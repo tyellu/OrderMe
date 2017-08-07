@@ -1,0 +1,105 @@
+<app-page-header [heading]="'Edit Profile'" [icon]="'fa-wrench'"></app-page-header>
+
+ <div class="row">
+    <!-- left column -->
+    <div class="col-md-4 col-sm-6 col-xs-12">
+      <div class="text-center">
+        <img [src]="image || '../../../assets/images/profile.jpg'" class="avatar img-circle img-thumbnail" alt="avatar">
+        <h6>Upload a different photo...</h6>
+        <input type="file" class="text-center center-block well well-sm" id="exampleInputFile" (change)="changeListener($event)" accept="image/*">
+      </div>
+    </div>
+    <!-- edit form column -->
+    <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
+      <div class="alert alert-info alert-dismissable">
+        <a class="panel-close close" data-dismiss="alert">×</a> 
+        <i class="fa fa-coffee"></i>
+        Always keep your profile<strong> up to date</strong>.
+      </div>
+      <h3>Personal info <small style="color:#cc0000">(*required fields)</small></h3>
+      <div class="form-horizontal">
+        <div class="form-group">
+          <label class="col-lg-3 control-label">First name:<small style="color:#cc0000">*</small></label>
+          <div class="col-lg-8">
+            <input [(ngModel)]="fname" class="form-control" type="text">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Last name:<small style="color:#cc0000">*</small></label>
+          <div class="col-lg-8">
+            <input [(ngModel)]="lname" class="form-control" type="text">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 control-label">City:<small style="color:#cc0000">*</small></label>
+          <div class="col-lg-8">
+            <input [(ngModel)]="city" class="form-control" type="text">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Country:<small style="color:#cc0000">*</small></label>
+          <div class="col-lg-8">
+            <input [(ngModel)]="ctry" class="form-control"  type="text">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Phone:<small style="color:#cc0000">*</small></label>
+          <div class="col-lg-8">
+            <input [(ngModel)]="phn" class="form-control" type="text">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Email:<small style="color:#cc0000">*</small></label>
+          <div class="col-lg-8">
+            <input [(ngModel)]="email" class="form-control" type="text">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Company Name:</label>
+          <div class="col-lg-8">
+            <input [(ngModel)]="company" class="form-control" type="text">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Company Position:</label>
+          <div class="col-lg-8">
+            <input [(ngModel)]="cpost" class="form-control" type="text">
+          </div>
+        </div>
+        <!--
+        <div class="form-group">
+          <label class="col-md-3 control-label">Username:</label>
+          <div class="col-md-8">
+            <input #user class="form-control" value={{user?.username}} type="text">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-3 control-label">Current Password:</label>
+          <div class="col-md-8">
+            <input #currpass class="form-control" type="password">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-3 control-label">New password:</label>
+          <div class="col-md-8">
+            <input #newpass class="form-control" value="1231" type="password">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-3 control-label">Confirm password:</label>
+          <div class="col-md-8">
+            <input #cnewpass class="form-control" value="" type="password">
+          </div>
+        </div>
+        -->
+        <div class="form-group">
+          <label class="col-md-3 control-label"></label>
+          <div class="col-md-8">
+            <input class="btn btn-primary" value="Save Changes" type="button" (click)="update(); false">
+            <span></span>
+            <input class="btn btn-default" value="Cancel" type="reset" [routerLink]="['/profile']">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

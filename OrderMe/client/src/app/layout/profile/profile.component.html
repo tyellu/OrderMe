@@ -1,0 +1,62 @@
+<app-page-header [heading]="'Profile Page'" [icon]="'fa-wrench'"></app-page-header>
+
+<!-- ******HEADER****** -->
+  <header class="header">
+    <div class="container">
+      <div class="teacher-name" style="padding-top:20px;">
+
+        <div class="row" style="margin-top:0px;">
+        <div class="col-md-9">
+          <h2 style="font-size:38px"><strong>{{user?.Lname}}, {{user?.Fname }}</strong></h2>
+        </div>
+        <div class="col-md-3">
+          <div class="button" style="float:right;">
+            <a class="btn btn-outline-success btn-sm" [routerLink]="['/editprofile']">Edit Profile</a>
+          </div>
+        </div>
+        </div>
+      </div>
+
+      <div class="row" style="margin-top:20px;">
+        <div class="col-md-3"> <!-- Image -->
+          <a href="#"> <img class="rounded-circle" [src]="user?.Image || '../../../assets/images/profile.jpg'" alt="Kamal" style="width:200px;height:200px"></a>
+        </div>
+
+        <div class="col-md-6"> <!-- Rank & Qualifications -->
+          <h5 style="color:#3AAA64">{{user?.Company}}, <small>{{user?.CPosition}}</small></h5>
+          <p><i class="fa fa-location-arrow"></i> {{user?.City}}, {{user?.Country}}</p>
+        </div>
+
+        <div class="col-md-3 text-center"> <!-- Phone & Social -->
+          <span class="number" style="font-size:18px"><i class="fa fa-phone"></i><strong> {{user?.Phone}} </strong></span>
+          <div class="button" style="padding-top:18px">
+            <a href="mailto:{{user?.Email}}" class="btn btn-outline-success btn-block">Send Email</a>
+          </div>
+          <div class="button" style="padding-top:18px">
+            <a class="btn btn-outline-success btn-block" [routerLink]="['/personal-info']" >Payment Details</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+    <!--End of Header-->
+
+<!-- Main container -->
+  <div class="container">
+
+<!-- Section:Biography -->
+  <div class="row">
+        <div class="col-md-12">
+          <div class="card card-block text-xs-left">
+            <h2 class="card-title" style="color:#009688"><i class="fa fa-cubes fa-fw"></i>Recent Activity</h2>
+            <div class="activity-feed">
+              <div class="feed-item">
+                <div class="date">June 27</div>
+                <div class="text">Created account</div>
+              </div>
+            </div>
+        </div>
+      </div>
+<!-- End:Biography -->
+
+</div> <!--End of Container-->

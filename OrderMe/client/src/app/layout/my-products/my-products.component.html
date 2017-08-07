@@ -1,0 +1,56 @@
+<app-page-header [heading]="'My Products Page'" [icon]="'fa-wrench'"></app-page-header>
+<div style="min-height: 100vh;">
+	<div class="row">
+		<div class="col-sm-10 pull-left">
+			<h1 *ngIf="!search"> My Products </h1>
+		</div>
+		<div class="col-sm-1">
+			<div (clickOutsideMy)="close()" class="pull-right" style="overflow: visible">
+				<div ngbDropdown [autoClose]="closeFilter" class="d-inline-block">
+					<button class="btn btn-outline-primary" id="dropdownMenu1" (click)="open()"ngbDropdownToggle>Filter  </button>
+					<div style="left: auto"  class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
+						<div class="checkbox">
+							<label style="display: block" *ngFor="let tag of tags">
+								<input (change)="filter($event, tag._id)" class="dropdown-checkbox" type="checkbox" value=""> {{tag.name}}
+							</label>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-1">
+			<div class="pull-right">
+				<div ngbDropdown class="d-inline-block">
+					<button class="btn btn-outline-primary" id="dropdownMenu1" ngbDropdownToggle>Sort  </button>
+					<div style="left: auto"  class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
+						<button type="button" (click)="sortAZ()" class="dropdown-item">A-Z</button>
+						<button type="button" (click)="sortZA()" class="dropdown-item">Z-A</button>
+						<button type="button" (click)="sortHigh()" class="dropdown-item">Price (high)</button>
+						<button type="button" (click)="sortLow()" class="dropdown-item">Price (low)</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+    	<!-- BEGIN PRODUCTS -->
+  		<div class="thumbnail col-md-3 col-sm-6" *ngFor="let prod of prodList">
+    		<span>
+      			<img [src]="prod.listingImage" id="product-page-images">
+      			<h4>{{prod.listingName}}</h4>
+      			<p>{{ prod.listingDescription }}</p>
+      			<i class="fa fa-leaf" aria-hidden="true"></i><strong><small> {{ prod.listingUsername }}</small></strong>
+      			<hr class="line">
+      			<div class="row">
+      				<div class="col-md-6 col-sm-6">
+      					<p class="price">${{prod.listingPrice}}</p>
+      				</div>
+      				<div class="col-md-6 col-sm-6">
+      					<button class="btn btn-success right" [routerLink]="['/product-page', prod._id]"> VIEW ITEM</button>
+      				</div>
+      			</div>
+    		</span>
+  		</div>
+  	</div>
+</div>
+

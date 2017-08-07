@@ -1,0 +1,54 @@
+.product-page-images{
+    width: inherit; // crossed-out
+    padding-left:10em;
+    padding-right:5em;
+}
+
+.valid {
+    border-right: 5px solid #23DC3D;
+}
+
+.invalid {
+    border-right: 5px solid red;
+}
+
+.errorText {
+    color: red;
+}
+
+.comments {
+    margin-top: 2px;
+    margin-bottom:2px;
+}
+
+.comment-div {
+	max-height: inherit;
+    padding: 10px;
+    background-color:#f2f2f2;
+    border-radius:5px;
+    box-shadow:4px 4px 1px #888888;
+}
+
+.container-full {
+  margin: 0 auto;
+  width: 100%;
+}
+
+.star-div {
+    margin-bottom: 5px;
+    margin-right:1em;
+}
+
+.writeReview:hover { 
+    cursor: pointer; 
+}
+
+.price{
+    font-size:48px;
+    font-weight:lighter;
+}
+
+.prodReview{
+    font-size:24px;
+    font-weight:lighter;
+}

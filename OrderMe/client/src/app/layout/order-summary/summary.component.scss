@@ -1,0 +1,84 @@
+.card-header {
+    background-color: #ec971f;
+}
+
+.container-full{
+	padding-left:0.5em;
+}
+.card-block {
+    background-color: #ec971f;
+}
+
+.valid {
+    border-right: 5px solid #23DC3D;
+}
+
+.invalid {
+    border-right: 5px solid red;
+}
+
+.errorText {
+	font-weight:lighter;
+	font-size:16px;
+    color: red;
+}
+
+.editInfo:hover { 
+    cursor: pointer; 
+}
+
+.box{
+    border-radius:5px;
+    box-shadow:4px 4px 1px #888888;
+}
+
+.box-order{
+    text-align:left;
+    background-color:#e6e6e6;
+    border-radius:5px;
+    box-shadow:4px 4px 1px #888888;
+    padding-bottom:40px;
+}
+
+.box-order-o{
+    background-color:white;
+    margin-top:5px;
+    margin-left:4px;
+    margin-right:4px;
+
+}
+
+.product-header{
+    background-color:#e6e6e6;
+}
+
+.des{
+    font-size:20px;
+    font-weight:lighter;
+    font-weight:bolder;
+}
+
+#ordSum{
+    text-align: center;
+vertical-align: middle;
+}
+
+.lighter{
+    font-weight:lighter;
+}
+
+.shipTo{
+	font-weight:lighter;
+	font-weight:bolder;
+	color:#349aff;
+}
+
+.bolder{
+	font-weight:bolder;
+}
+.help{
+	padding-left:1em;
+}
+.paypal{
+	text-align:center;
+}

@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css?family=Amaranth:700|Anton|Montserrat|Muli');
+.topHeader{
+	font-family:'Amaranth', sans-serif;
+	text-align:center;
+	color: #2db92d;
+}
+.bottomHeader{
+	text-align:center;
+	font-weight:lighter;
+}
+
+.left{
+	margin:0.5em;
+	float:right;
+	background-color:#349aff;
+	border-bottom: 2px solid #4B8E4B;
+	font-size:16px;
+}
+.left:hover{
+	background-color:#0181ff;
+}
+
+.right{
+	margin:0.5em;
+	float:right;
+	border-bottom: 2px solid #4B8E4B;
+	font-size:16px;
+}
+
+.myOrder{ 
+    color:#349aff;
+}
+
+.myOrder:hover { 
+	color:#349aff;
+    cursor: pointer; 
+}
+
+.center{
+	display: flex;
+  align-items: center;
+  justify-content: center;
+}

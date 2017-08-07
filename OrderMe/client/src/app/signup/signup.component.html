@@ -1,0 +1,35 @@
+<div class="login-page">
+    <div class="row">
+        <div class="col-md-4 push-md-4">
+            <img class="user-avatar" src="assets/images/orderme.png" style="max-width=400px;"/>
+            <h3>Register</h3>
+            <small style="color:#cc0000" *ngIf="hasEmpties"> Please fill in all the fields </small>
+            <br>
+            <small style="color:#cc0000" *ngIf="!passMatch"> Passwords do not match </small>
+            <form role="form">
+                <div class="form-content register">
+
+                    <div class="form-group">
+                        <input #username type="text" class="form-control input-underline input-lg" id="username" placeholder="Username">
+                    </div>
+                    <div class="radio-group" id="accountType">
+                    <input [(ngModel)]="accountType" type="radio" id="option-producer" value="producer"  name="selector">
+                        <label for="option-producer">Manufacturer</label>
+                    <input [(ngModel)]="accountType" type="radio" id="option-consumer" value="consumer" name="selector">
+                        <label   for="option-consumer">Business Owner</label>
+                    </div>
+
+                    <div class="form-group">
+                        <input #password  type="password" class="form-control input-underline input-lg" id="password" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <input #password2  type="password" class="form-control input-underline input-lg" id="password2" placeholder="Repeat Password">
+                    </div>
+                </div>
+                <a class="btn rounded-btn" (click)="onRegister(username.value, password.value, password2.value, accountType )">  Register </a>&nbsp;
+                <a class="btn rounded-btn" [routerLink]="['/login']"> Back </a>
+
+            </form>
+        </div>
+    </div>
+</div>

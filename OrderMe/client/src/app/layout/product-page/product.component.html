@@ -1,0 +1,126 @@
+<app-page-header [heading]="'Products Page'" [icon]="'fa-wrench'"></app-page-header>
+<div class="row">
+
+    <div class="col-sm-7">
+        <img [src]="prod.listingImage" class="product-page-images">
+    </div>
+
+    <div class="col-sm-5">
+        <div class="row">
+            <div class="col-sm-12">
+                <div>
+                    <h1>{{prod.listingName}} </h1>
+                    <button *ngIf="showEdit" class="btn btn-primary" (click)="onEditClick(prod._id)" type="button">Edit</button>
+                    <button *ngIf="showEdit" class="btn btn-danger" (click)="onDeleteClick(prod._id)" type="button">Delete</button>
+                    <hr>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="pull-left col-sm-4" *ngIf="reviews">
+                <small>{{ reviews.length }} review(s)</small>
+            </div>
+            <div class="col-sm-4">
+                <a *ngIf="user.accountType != 'producer'" class="writeReview" (click)="open(reviewModal)"><small style="color:#349aff;">Add Your Review</small></a>
+            </div>
+            <div class="col-sm-4">
+                <p><small>supplier: </small><small><strong>{{ prod.listingUsername }}</strong></small></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <h2 class="price">${{amount}}</h2>
+            </div>
+            <div class="col-sm-6">
+                <p class="pull-left"><strong>STOCK:</strong> {{ prod.listingStock }}</p>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-sm-12">
+                <p> {{ prod.listingDescription }} </p>
+            </div>
+        </div>
+
+	  <div class="row">
+			<form role="form">
+	    			<button *ngIf="user.accountType != 'producer'" type="button" class="pull-right btn btn-primary" (click)="onOrderClick(prod._id)">Order</button>
+			</form>
+	  </div>
+
+    </div>
+
+</div>
+<hr>
+
+<ng-template #reviewModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title">Review</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="modal-body">
+        <div class="form-group">
+            <label>Your Rating</label>
+            <select [(ngModel)]="reviewRating" class="form-control">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+        </div>
+        <fieldset class="form-group">
+            <label>Your Review</label>
+            <textarea [(ngModel)]="reviewText" class="form-control" rows="3"></textarea>
+        </fieldset>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" (click)="onReviewSubmit(); c('Close click')" class="btn btn-primary" [disabled]="!(reviewRating)">Submit Review</button>
+        <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+    </div>
+</ng-template>
+
+<div class="row">
+    <div class="col-sm-12">
+        <strong class="prodReview">Product Review(s)</strong>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12" *ngIf="reviews">
+        <i class="fa fa-comment-o" aria-hidden="true"></i><small> {{ reviews.length }} review(s)</small>
+    </div>
+</div>
+<div class="list-group comments" *ngFor="let review of reviews">
+    <div class="container-full">
+        <div class="row d-flex w-100 comment-div">
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="pull-left star-div">
+                            <i *ngFor="let num of counter(review.rating)" class="fa fa-star" style="font-size:20px;color: #cdac00"></i>
+                            <i *ngFor="let num of reverseCounter(review.rating)" class="fa fa-star-o" style="font-size:20px;color: #cdac00"></i>
+                        </div>
+                        <small style="font-weight: lighter; color:#2b2b2b;">Reviewed by {{review.username}}</small>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="pull-right star-div">
+                            <button *ngIf="isAdmin" class="btn btn-danger" type="button" (click)="onReviewDelete(review._id)"><i class="fa fa-close"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <p style="color:#2b2b2b;"> {{review.review}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+</div>
+
+

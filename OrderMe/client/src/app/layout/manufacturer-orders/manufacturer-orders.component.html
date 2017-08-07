@@ -1,0 +1,75 @@
+	<app-page-header [heading]="'Placed Orders'" [icon]="'fa-wrench'"></app-page-header>
+<div style="min-height: 100vh;">
+	<div class="row">
+		<div class="col-sm-10 pull-left">
+			<h1> My Orders </h1>
+		</div>
+		<div class="col-sm-1">
+			<div (clickOutsideOrders)="close()" class="pull-right" style="overflow: visible">
+				<div ngbDropdown [autoClose]="closeFilter" class="d-inline-block">
+					<button class="btn btn-outline-primary" id="dropdownMenu1" (click)="open()"ngbDropdownToggle>Filter  </button>
+					<div style="left: auto"  class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
+						<div class="checkbox">
+							<label style="display: block">
+								<input (change)="filter($event, 'Shipped')" class="dropdown-checkbox" type="checkbox" value=""> Shipped
+							</label>
+                            <label style="display: block">
+								<input (change)="filter($event, 'Paid')" class="dropdown-checkbox" type="checkbox" value=""> Paid
+							</label>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-1">
+			<div class="pull-right">
+				<div ngbDropdown class="d-inline-block">
+					<button class="btn btn-outline-primary" id="dropdownMenu1" ngbDropdownToggle>Sort  </button>
+					<div style="left: auto"  class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
+						<button type="button" (click)="sortNewest()" class="dropdown-item">Newest</button>
+						<button type="button" (click)="sortOldest()" class="dropdown-item">Oldest</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+    	<!-- BEGIN PRODUCTS -->
+  		<div class="thumbnail col-md-3 col-sm-6" *ngFor="let order of orders">
+    		<span>
+      			<img [src]="prods[order.orderListingId]" id="product-page-images">
+      			<h4>{{order.orderListingName}}</h4>
+      			<small>Quantity: {{ order.orderAmount }}</small>
+      			<div class="row">
+      				<div class="col-sm-6">
+                  		<p><small>$ {{ order.orderPricePerUnit.toFixed(2) }}</small></p>
+                  	</div>
+                  	<div class="col-sm-6">
+                  		<p><small>{{ getLocalTime(order.orderDate) }}</small></p>
+                  	</div>
+                </div>
+      			<small class="true" *ngIf="order.orderShipped == true"><i class="fa fa-check" aria-hidden="true"></i> Shipped</small>
+      			<small class="true" *ngIf="order.orderPaid == true"><i class="fa fa-check" aria-hidden="true"></i> Paid</small>
+      			<small class="false" *ngIf="order.orderShipped == false"><i class="fa fa-times" aria-hidden="true"></i> Shipped</small>
+      			<small class="false" *ngIf="order.orderPaid == false"><i class="fa fa-times" aria-hidden="true"></i> Paid</small>
+
+      			<hr class="line">
+      			<div class="row">
+      				<div class="col-md-2 col-sm-2">
+      					<p class="price"><small><strong>TOTAL:</strong> ${{order.orderPriceAfterTax.toFixed(2)}}</small></p>
+      				</div>
+      				<div class="col-md-5 col-sm-5">
+      					<button class="btn btn-success left" [routerLink]="['/product-page', order.orderListingId]"> VIEW ITEM</button>
+      				</div>
+      				<div class="col-md-5 col-sm-5">
+      					<button class="btn btn-success right" (click)="onShipClick(order._id)"> SHIP</button>
+      				</div>
+
+      				
+      			</div>
+    		</span>
+  		</div>
+
+  	</div>
+</div>
+

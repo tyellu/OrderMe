@@ -1,0 +1,187 @@
+<app-page-header [heading]="'Order Details'" [icon]="'fa-wrench'"></app-page-header>
+
+<div class="row">
+  <!-- edit form column -->
+  <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
+    <div class="alert alert-info alert-dismissable">
+      <a class="panel-close close" data-dismiss="alert">×</a> 
+      <i class="fa fa-coffee"></i><strong>Fill in the information below to complete your orders.</strong>
+    </div>
+    <h3>Billing Information <small style="color:#cc0000">(*required fields)</small></h3>
+      <div class="form-group">
+        <div class="col-lg-8">
+          <input [(ngModel)]="bfname" class="form-control" type="text" placeholder="First Name *">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-lg-8">
+          <input [(ngModel)]="blname" class="form-control"  type="text" placeholder="Last Name *">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-lg-8">
+          <input [(ngModel)]="baptNum" class="form-control"  type="text" placeholder="Apt Number *">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-lg-8">
+          <input [(ngModel)]="bstreet" class="form-control" id="" type="text" placeholder="Street *">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-lg-8">
+          <input [(ngModel)]="bcity" class="form-control" type="text" placeholder="City *"> 
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-lg-8">
+          <input [(ngModel)]="bprovince" class="form-control" type="text" placeholder="Province *"> 
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-lg-8">
+          <select [(ngModel)]="bcountry" class="dropdown-toggle form-control" data-toggle="dropdown">
+            <option value="" selected disabled>Country *</option>
+            <option>Canada</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-lg-8">
+          <input [(ngModel)]="bpostalcode" class="form-control" ng-model="u.pcode" type="text" placeholder="Postal Code*">
+        </div>
+      </div>
+    <br />
+
+    <input type="checkbox" (change)="onMatchChange($event)"> Check if shipping address is same as billing address.
+
+    <h3>Shipping Information <small style="color:#cc0000">(*required fields)</small></h3>
+      <div class="form-group">
+        <div class="col-lg-8">
+          <input [(ngModel)]="sfname" class="form-control" type="text" placeholder="First Name *">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-lg-8">
+          <input [(ngModel)]="slname" class="form-control" type="text" placeholder="Last Name *">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-lg-8">
+          <input [(ngModel)]="saptNum" class="form-control" id="" type="text" placeholder="Apt Number *">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-lg-8">
+          <input [(ngModel)]="sstreet" class="form-control" id="" type="text" placeholder="Street *">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-lg-8">
+          <input [(ngModel)]="scity" class="form-control" type="text" placeholder="City *"> 
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-lg-8">
+          <input [(ngModel)]="sprovince" class="form-control" type="text" placeholder="Province *"> 
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-lg-8">
+          <select [(ngModel)]="scountry" class="dropdown-toggle form-control" data-toggle="dropdown">
+            <option value="" selected disabled>Country *</option>
+            <option>Canada</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-lg-8">
+          <input [(ngModel)]="spostalcode" class="form-control" type="text" placeholder="Postal Code *">
+        </div>
+      </div>
+    <br />
+    <!--
+    <h3>Payment Information <small style="color:#cc0000">(*required fields)</small></h3>
+      <div class="form-group">
+        <div class="col-lg-8">
+          <input [(ngModel)]="cname" class="form-control" type="text" placeholder="Name on the card">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-lg-8">
+          <select [(ngModel)]="ctype" class="dropdown-toggle form-control" data-toggle="dropdown">
+            <option value="" selected disabled>Choose..</option>
+            <option>VISA</option>
+            <option>VISA Debit</option>
+            <option>MasterCard</option>
+            <option>American Express</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-lg-8">
+          <input [(ngModel)]="cnum" class="form-control" type="text" placeholder="Card Number">
+        </div>
+      </div>
+      <div class="row form-group">
+        <label class="col-lg-1 control-label">Expires:  </label>
+        <div class="col-lg-2">
+          <select [(ngModel)]="cmonth" class="dropdown-toggle form-control" data-toggle="dropdown">
+            <option value="" selected disabled>Month</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+            <option>10</option>
+            <option>11</option>
+            <option>12</option>
+          </select>
+        </div>
+        <div class="col-lg-2">
+          <select [(ngModel)]="cyear" class="dropdown-toggle form-control" data-toggle="dropdown">
+            <option value="" selected disabled>Year</option>
+            <option>2010</option>
+            <option>2011</option>
+            <option>2012</option>
+            <option>2013</option>
+            <option>2014</option>
+            <option>2015</option>
+            <option>2016</option>
+            <option>2017</option>
+            <option>2018</option>
+            <option>2019</option>
+            <option>2020</option>
+            <option>2021</option>
+            <option>2022</option>
+            <option>2023</option>
+            <option>2024</option>
+            <option>2025</option>
+            <option>2026</option>
+            <option>2027</option>
+            <option>2028</option>
+            <option>2029</option>
+            <option>2030</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-lg-3">
+          <input [(ngModel)]="ccode" class="form-control" type="text" placeholder="Security Code"> 
+        </div>
+      </div>
+      -->
+    <div class="form-group">
+      <label class="col-md-3 control-label"></label>
+      <div class="col-md-8">
+        <input class="btn btn-primary" value="Save Changes" type="button" (click)="updateInfo()">
+        <span></span>
+        <input class="btn btn-default" value="Cancel" type="reset" [routerLink]="['/profile']">
+      </div>
+    </div>
+  </div>
+</div>

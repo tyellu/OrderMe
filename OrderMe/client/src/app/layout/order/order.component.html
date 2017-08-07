@@ -1,0 +1,24 @@
+<app-page-header [heading]="'Confirmation Page'" [icon]="'fa-wrench'"></app-page-header>
+
+<div>
+	<div class="row">
+		<div class="col-sm-12">
+			<h2 class="topHeader"><i class="fa fa-check-circle" style="color: #2db92d;" aria-hidden="true"></i> YOUR ORDER HAS BEEN PLACED</h2>
+		</div>
+	</div>
+	<hr>
+	<div class="row">
+		<div class="col-sm-12">
+			<h3 class="bottomHeader"><i>Thank you for your purchase!</i></h3>
+		</div>
+	</div>
+	<hr>
+	<div class="row">
+		<div class="col-sm-12">
+			<p> Your order has been placed and is being processed. When the item(s) are shipped, you will receive an email with the details. You can track this order through <a [routerLink]="['/myorders']">My Orders</a> page.</p>
+		</div>
+	</div>
+	<div class="row center">
+		<button class="btn btn-success left" [routerLink]="['/products']">Continue Shopping</button>
+	</div>
+</div>

@@ -1,0 +1,45 @@
+<app-page-header [heading]="'Edit Page'" [icon]="'fa-wrench'"></app-page-header>
+
+<h1> Edit a Product </h1>
+
+<div class="row">
+    <div class="col-lg-6">
+
+            <fieldset class="form-group">
+                <label>Product Name</label>
+                <input [(ngModel)]="name" [ngClass]="name ? 'form-control valid' : 'form-control invalid'">
+            </fieldset>
+
+            <label>Price</label>
+            <p *ngIf="errorPrice" class="errorText"> Please use only numbers </p>
+            <div class="form-group input-group">
+                <span class="input-group-addon">$</span>
+                <input (keypress)="_keyPress1($event)" type="text" [(ngModel)]="price" [ngClass]="price ? 'form-control valid' : 'form-control invalid'">
+            </div>
+
+            <fieldset class="form-group">
+                <label>Stock</label>
+                <p *ngIf="errorStock" class="errorText"> Please use only numbers </p>
+                <input (keypress)="_keyPress2($event)" [(ngModel)]="stock" [ngClass]="stock ? 'form-control valid' : 'form-control invalid'">
+            </fieldset>
+
+            <fieldset class="form-group">
+                <label for="exampleInputFile">Product Image</label>
+                <input type="file" class="form-control-file" id="exampleInputFile" (change)="changeListener($event)" accept="image/*">
+            </fieldset>
+
+            <fieldset class="form-group">
+                <label>Product Description</label>
+                <textarea [(ngModel)]="desc" [ngClass]="desc ? 'form-control valid' : 'form-control invalid'" rows="3"></textarea>
+            </fieldset>
+
+            <label>Tags</label>
+            <tag-input [theme]="'dark'" [ngModel]="currTags" (onAdd)="onItemAdded($event)" (onRemove)="onItemRemoved($event)" [onlyFromAutocomplete]="true">
+                <tag-input-dropdown [showDropdownIfEmpty]="true" [autocompleteItems]="availTags" [identifyBy]="'_id'" [displayBy]="'name'"></tag-input-dropdown>
+            </tag-input>
+
+            <button style="margin-top: 10px" type="button" (click)="onSubmitClick()" class="btn btn-primary" [disabled]="!(name && price && stock && image && desc)">Submit</button>
+
+    </div>
+</div>
+<!-- /.row -->

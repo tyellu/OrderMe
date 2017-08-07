@@ -1,0 +1,26 @@
+<div class="login-page">
+    <div class="row">
+        <div class="col-md-4 push-md-4">
+            <img class="user-avatar" src="assets/images/orderme.png" style="max-width=400px;"/>
+            <h5>Drop Shipping Made Easy.</h5>
+            <small style="color:#cc0000" *ngIf="hasError"> Invalid Login </small>
+            <small style="color:#00b400" *ngIf="registeredUser"> Register Success </small>
+            <small style="color:#cc0000"> {{errorMessage}} </small>
+
+            <form class="form" role="form">
+                <div class="form-content">
+                    <div class="form-group">
+                        <input #username type="text" ng-model="username" class="form-control input-underline input-lg" id="username" placeholder="Email">
+                    </div>
+
+                    <div class="form-group">
+                        <input #password type="password" class="form-control input-underline input-lg" id="password" placeholder="Password">
+                    </div>
+                </div>
+                <a class="btn rounded-btn"(click)="onLoggedin(username.value, password.value)"> Log in </a>
+                &nbsp;
+                <a class="btn rounded-btn" [routerLink]="['/signup']">Register</a>
+            </form>
+        </div>
+    </div>
+</div>

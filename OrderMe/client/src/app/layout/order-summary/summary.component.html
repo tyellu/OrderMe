@@ -1,0 +1,320 @@
+<app-page-header [heading]="'Order Summary Page'" [icon]="'fa-wrench'"></app-page-header>
+
+<div class="row">
+
+<div class="col-sm-8 container-full">
+    <div class="row">
+      <h2>Review and Place Your Order</h2>
+    </div>
+    <hr>
+    <div class="row">
+      <h3 class="shipTo">Shipping to:&nbsp;</h3><h4 class="shipTo">{{user?.ShippingAddress?.Fname}} {{user?.ShippingAddress?.Lname}}</h4>
+    </div>
+    <div class="row">
+      <!--Shipping Address-->
+      <div class="pull-left col-sm-6">
+        <div class="row">
+          <small class="lighter bolder"><strong>Shipping Address:</strong></small>
+          <small class="editInfo" (click)="open(updateShipping)" style="color:#349aff; padding-left:1em;">Edit</small>
+        </div>
+        <div class="row" style="margin-left:1em;">
+          <p>
+            <small>{{user?.ShippingAddress?.Fname}} {{user?.ShippingAddress?.Lname}}</small><br />
+            <small>{{user?.ShippingAddress?.Street}} {{user?.ShippingAddress?.aptNo}}</small><br />
+            <small>{{user?.ShippingAddress?.City}} {{user?.ShippingAddress?.Province}}</small><br />
+            <small>{{user?.ShippingAddress?.Country}} {{user?.ShippingAddress?.PostalCode}}</small>
+          </p>
+        </div>
+      </div>
+      <!--Billing Address -->
+      <div class="pull-left col-sm-6">
+        <div class="row">
+          <small class="lighter bolder"><strong>Billing Address: </strong></small>
+          <small class="editInfo" style="color:#349aff; padding-left:1em;" (click)="open(updateBilling)">Edit</small>
+        </div>
+        <div class="row" style="margin-left:1em;">
+          <p>
+            <small>{{user?.BillingAddress?.Fname}} {{user?.BillingAddress?.Lname}}</small><br /> 
+            <small>{{user?.BillingAddress?.Street}} {{user?.BillingAddress?.aptNo}}</small><br /> 
+            <small>{{user?.BillingAddress?.City}} {{user?.BillingAddress?.Province}}</small><br /> 
+            <small>{{user?.BillingAddress?.Country}} {{user?.BillingAddress?.PostalCode}}</small>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 col-md-10 col-md-offset-1">
+        <table class="box table table-hover">
+          <thead class="product-header">
+            <tr>
+              <th><small><strong>Product</strong></small></th>
+              <th><small><strong>QTY</strong></small></th>
+              <th class="text-center"><small><strong>Price</strong></small></th>
+              <th class="text-center"><small><strong>Total</strong></small></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="col-sm-8 col-md-6">
+                <div class="media">
+                  <div class="media-body">
+                    <p class="media-heading"><small><strong>{{prod.listingName}}</strong></small>
+                      <small>&nbsp;&nbsp;&nbsp;(Stock: {{ prod.listingStock }})</small>
+                    </p>
+                    <p class="media-heading"><small>by: {{prod.listingUsername}}</small></p>
+                  </div>
+                </div></td>
+                <td class="col-sm-1 col-md-1 text-center">
+                  <p>
+                    <small>{{ amount }}</small>
+                    <small class="editInfo" style="color:#349aff;" (click)="open(content)">Update</small></p>
+                    <p *ngIf="errorQuantity" class="errorText">Missing quantity of order</p>
+
+                    <p *ngIf="errorTotal" class="errorText">No Viable Quantity Entered</p>
+
+                    <p *ngIf="errorOverStock" class="errorText">Not Enough Stock</p>
+                  </td>
+                  <td class="col-sm-1 col-md-1 text-center"><small><strong>${{displayPricePer}}</strong></small></td>
+                  <td class="col-sm-1 col-md-1 text-center"><small><strong>${{displayPretax}}</strong></small></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="row">
+          <form role="form">
+            <button type="button" class="pull-left btn btn-primary" [routerLink]="['/product-page', prod._id]">Cancel</button>
+          </form>
+        </div>
+      </div>
+
+      <!--Price Summary Box -->
+      <div class="col-sm-4">
+        <div class="box-order">
+          <div class="text-center">
+            <p class="des">Order Summary</p>
+          </div>
+          <div class="box-order-o">
+            <div class="row">
+              <div class="col-sm-6">
+                <small>Merchandise:</small>
+              </div>
+              <div class="col-sm-6">
+                <small>${{displayPretax}}</small>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <small>Tax:</small>
+              </div>
+              <div class="col-sm-6">
+                <small>${{displayTax}}</small>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <small><strong>Order Total:</strong></small>
+              </div>
+              <div class="col-sm-6">
+                <small><strong>${{displayTotal}}</strong></small>
+              </div>
+            </div>
+            <form role="form">
+              <div  class="paypal" id="paypal-button"></div>
+
+           <!-- <button type="button" class="btn btn-primary" (click)="onOrderClick(prod._id, user?.BillingAddress.Fname, user?.BillingAddress.Lname,  user?.BillingAddress.aptNo, user?.BillingAddress.Street, user?.BillingAddress.City, user?.BillingAddress.Province, user?.BillingAddress.Country, user?.BillingAddress.PostalCode, user?.ShippingAddress?.Fname, user?.ShippingAddress?.Lname, user?.ShippingAddress?.aptNo, user?.ShippingAddress?.Street, user?.ShippingAddress?.City, user?.ShippingAddress?.Province, user?.ShippingAddress?.Country, user?.ShippingAddress?.PostalCode)">Order</button>
+         -->     </form>
+       </div>
+       <p class="help"><i class="fa fa-question-circle" aria-hidden="true"></i><small><strong> Make sure your selected quantity is correct.</strong></small></p>
+     </div>
+     <hr>
+     <div class="row">
+      <p><i class="fa fa-lock" aria-hidden="true"></i><small> Secure Checkout</small><br>
+        <small><strong>Shopping is always safe and secure.</strong></small></p>
+      </div>
+    </div>
+  </div>  
+
+
+  <ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title">Enter a quanity.</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <fieldset class="form-group">
+       <p *ngIf="errorStock" class="errorText"> Please use only numbers </p>
+       <input (keypress)="_keyPress2($event)" [(ngModel)]="amount" [ngClass]="amount ? 'form-control valid' : 'form-control invalid'">
+     </fieldset>
+   </div>
+   <div class="modal-footer">
+
+     <button type="button" (click)="onSubmitClick(prod.listingStock); c('Close click')" class="btn btn-primary" [disabled]="!(amount)">Enter</button>
+
+     <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+   </div>
+ </ng-template>
+
+ <ng-template #updateBilling let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Update Billing Info</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <form class="form-horizontal" role="form">
+
+      <div class="form-group">
+        <label class="col-lg-3 control-label">First Name:<small style="color:#cc0000">*</small></label>
+        <div class="col-lg-8">
+          <input #fname class="form-control" value={{user?.BillingAddress?.Fname}} ng-model="u.fname" type="text">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-lg-3 control-label">Last Name:<small style="color:#cc0000">*</small></label>
+        <div class="col-lg-8">
+          <input #lname class="form-control" value={{user?.BillingAddress?.Lname}} ng-model="u.lname" type="text">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-lg-3 control-label">Street:<small style="color:#cc0000">*</small></label>
+        <div class="col-lg-8">
+          <input #street class="form-control" value={{user?.BillingAddress?.Street}} ng-model="u.street" type="text">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-lg-3 control-label">Apartment Number:<small style="color:#cc0000">*</small></label>
+        <div class="col-lg-8">
+          <input #aptNo class="form-control" value={{user?.BillingAddress?.aptNo}} ng-model="u.aptNo" type="text">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-lg-3 control-label">City:<small style="color:#cc0000">*</small></label>
+        <div class="col-lg-8">
+          <input #city class="form-control" value={{user?.BillingAddress?.City}} ng-model="u.city" type="text">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-lg-3 control-label">Province:<small style="color:#cc0000">*</small></label>
+        <div class="col-lg-8">
+          <input #prov class="form-control" value={{user?.BillingAddress?.Province}} ng-model="u.prov" type="text">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-lg-3 control-label">Country:<small style="color:#cc0000">*</small></label>
+        <div class="col-lg-8">
+          <input #country class="form-control" value={{user?.BillingAddress?.Country}} ng-model="u.country" type="text">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-lg-3 control-label">Postal Code:<small style="color:#cc0000">*</small></label>
+        <div class="col-lg-8">
+          <input #postalCode class="form-control" value={{user?.BillingAddress?.PostalCode}} ng-model="u.postalCode" type="text">
+        </div>
+      </div>
+
+
+    </form>
+
+
+  </div>
+  <div class="modal-footer">
+
+   <button type="button" (click)="onUpdateBClick(prod._id, fname.value, lname.value, street.value, aptNo.value, city.value, prov.value, country.value, postalCode.value); c('Close click')" class="btn btn-primary" [disabled]="!(fname.value && lname.value && street.value && aptNo.value && city.value && prov.value && country.value && postalCode.value)">Update Billing Info</button>
+
+   <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+ </div>
+</ng-template>
+
+
+
+<ng-template #updateShipping let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Update Shipping Info</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <form class="form-horizontal" role="form">
+
+      <div class="form-group">
+        <label class="col-lg-3 control-label">First Name:<small style="color:#cc0000">*</small></label>
+        <div class="col-lg-8">
+          <input #fname class="form-control" value={{user?.ShippingAddress?.Fname}} ng-model="u.fname" type="text">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-lg-3 control-label">Last Name:<small style="color:#cc0000">*</small></label>
+        <div class="col-lg-8">
+          <input #lname class="form-control" value={{user?.ShippingAddress?.Lname}} ng-model="u.lname" type="text">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-lg-3 control-label">Street:<small style="color:#cc0000">*</small></label>
+        <div class="col-lg-8">
+          <input #street class="form-control" value={{user?.ShippingAddress?.Street}} ng-model="u.street" type="text">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-lg-3 control-label">Apartment Number:<small style="color:#cc0000">*</small></label>
+        <div class="col-lg-8">
+          <input #aptNo class="form-control" value={{user?.ShippingAddress?.aptNo}} ng-model="u.aptNo" type="text">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-lg-3 control-label">City:<small style="color:#cc0000">*</small></label>
+        <div class="col-lg-8">
+          <input #city class="form-control" value={{user?.ShippingAddress?.City}} ng-model="u.city" type="text">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-lg-3 control-label">Province:<small style="color:#cc0000">*</small></label>
+        <div class="col-lg-8">
+          <input #prov class="form-control" value={{user?.BillingAddress?.Province}} ng-model="u.prov" type="text">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-lg-3 control-label">Country:<small style="color:#cc0000">*</small></label>
+        <div class="col-lg-8">
+          <input #country class="form-control" value={{user?.ShippingAddress?.Country}} ng-model="u.country" type="text">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-lg-3 control-label">Postal Code:<small style="color:#cc0000">*</small></label>
+        <div class="col-lg-8">
+          <input #postalCode class="form-control" value={{user?.ShippingAddress?.PostalCode}} ng-model="u.postalCode" type="text">
+        </div>
+      </div>
+
+
+    </form>
+
+
+  </div>
+  <div class="modal-footer">
+
+   <button type="button" (click)="onUpdateSClick(prod._id, fname.value, lname.value, street.value, aptNo.value, city.value, prov.value, country.value, postalCode.value); c('Close click')" class="btn btn-primary" [disabled]="!(fname.value && lname.value && street.value && aptNo.value && city.value && prov.value && country.value && postalCode.value)">Update Shipping Info</button>
+
+   <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+ </div>
+</ng-template>

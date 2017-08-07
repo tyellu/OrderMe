@@ -1,0 +1,70 @@
+<app-page-header [heading]="'Admin Dashboard'" [icon]="'fa-bar-chart-o'"></app-page-header>
+<div class="row">
+    <div class="col-xl-3 col-lg-6">
+        <app-stat [bgClass]="'card-primary'" [icon]="'fa-comments'" [count]="analytics?.numUsers" [label]="'Users'" ></app-stat>
+    </div>
+    <div class="col-xl-3 col-lg-6">
+        <app-stat [bgClass]="'card-info'" [icon]="'fa-tasks'" [count]="analytics?.numListings" [label]="'Listings'" ></app-stat>
+    </div>
+    <div class="col-xl-3 col-lg-6">
+        <app-stat [bgClass]="'card-success'" [icon]="'fa-shopping-cart'" [count]="analytics?.numOrders" [label]="'Orders'" ></app-stat>
+    </div>
+    <div class="col-xl-3 col-lg-6">
+        <app-stat [bgClass]="'card-danger'" [icon]="'fa-support'" [count]="analytics?.numTags" [label]="'Tags'"></app-stat>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="card mb-3">
+            <div class="card-header">
+                Admin Tools
+            </div>
+            <div class="card-block">
+                <div>
+                    <ngb-alert [type]="alert.type" (close)="closeAlert(alert)" *ngFor="let alert of alerts">{{ alert.message }}</ngb-alert>
+
+                </div>
+                <div>
+                    <input #usernameAdmin class="form-group" placeholder="Username">
+                    <button type="button" (click)="makeAdmin(usernameAdmin.value)"> Make Admin</button>
+                </div>
+
+                <div>
+                    <input #usernameBan class="form-group" placeholder="Username">
+                    <button type="button" (click)="banUser(usernameBan.value)"> Ban User</button>
+                </div>
+                <div>
+                    <input #usernameUnban class="form-group" placeholder="Username">
+                    <button type="button" (click)="unbanUser(usernameUnban.value)"> UnBan User</button>
+                </div>
+
+        </div>
+        <div class="card mb-3">
+            <div class="card-header">
+                Tag Tools
+            </div>
+            <div class="card-block">
+                <div>
+                    <input [(ngModel)]="tagName" class="form-group" placeholder="Tag Name">
+                    <button type="button" (click)="addTag()">Add Tag</button>
+                </div>
+                <div>
+                    <button *ngFor="let tag of tags" (click)="deleteTag(tag._id)" style="margin-right: 4px; margin-bottom: 4px;"class="btn btn-danger">{{ tag.name}} &nbsp;<i class="fa fa-close"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="card mb-3">
+            <div class="card-header">
+                Accounts
+            </div>
+            <div class="card-block">
+                <canvas baseChart height="180px" [data]="doughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+                </canvas>
+            </div>
+        </div>
+    </div>
+</div>
